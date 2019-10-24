@@ -7,6 +7,7 @@ import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
 import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
+import Navbar from "./components/Navbar";
 
 class App extends Component {
   constructor(props) {
@@ -15,7 +16,10 @@ class App extends Component {
     this.handleLogout = this.handleLogout.bind(this);
   }
   state = {
-    loggedIn: false
+    loggedIn: false,
+    account: {
+      username: ""
+    }
   };
 
   handleLogin() {
@@ -28,45 +32,53 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <Switch>
-          <Route exact path="/home" component={Home} />
-          {/* <Route
-            path="/"
-            render={() =>
-              this.state.loggedIn ? (
-                <Redirect to="/home" />
-              ) : (
-                <Login
-                  isLoggedIn={this.state.loggedIn}
-                  onLogin={this.handleLogin}
-                />
-              )
-            }
-          />
-          <Route
-            exact
-            path="/home"
-            render={() =>
-              this.state.loggedIn ? <Home /> : <Redirect to="/" />
-            }
-          />
-          <Route
-            exact
-            path="/create-question"
-            render={() =>
-              this.state.loggedIn ? <CreateQuestion /> : <Redirect to="/" />
-            }
-          />
-          <Route
-            exact
-            path="/leaderboard"
-            render={() =>
-              this.state.loggedIn ? <Leaderboard /> : <Redirect to="/" />
-            }
-          /> */}
-          <Route render={() => <Page404 isLoggedIn={this.state.loggedIn} />} />
-        </Switch>
+      <div className="container-fluid">
+        <Navbar
+          isLoggedIn={this.state.loggedIn}
+          username={this.state.account.username}
+          onLogoutClick={this.handleLogout}
+        />
+        <div className="row">
+          <Switch>
+            <Route
+              path="/"
+              render={() =>
+                this.state.loggedIn ? (
+                  <Redirect to="/home" />
+                ) : (
+                  <Login
+                    isLoggedIn={this.state.loggedIn}
+                    onLogin={this.handleLogin}
+                  />
+                )
+              }
+            />
+            <Route
+              exact
+              path="/home"
+              render={() =>
+                this.state.loggedIn ? <Home /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/create-question"
+              render={() =>
+                this.state.loggedIn ? <CreateQuestion /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/leaderboard"
+              render={() =>
+                this.state.loggedIn ? <Leaderboard /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              render={() => <Page404 isLoggedIn={this.state.loggedIn} />}
+            />
+          </Switch>
+        </div>
       </div>
     );
   }

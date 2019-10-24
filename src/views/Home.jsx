@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import { Button, Container, Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 import Question from "../components/Question";
 import { connect } from "react-redux";
 import { handleGetQuestions } from "../actions/shared";
 
 class Home extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
   componentDidMount() {
     this.props.dispatch(handleGetQuestions());
   }
