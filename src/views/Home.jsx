@@ -15,34 +15,32 @@ class Home extends Component {
 
   render() {
     return (
-      <Container>
-        <div className="App">
-          <Row>
-            <Col>
-              <div className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <h2>Welcome to Would You Rather Game</h2>
-              </div>
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <div>
-                <Tabs
-                  defaultActiveKey="home"
-                  transition={false}
-                  id="noanim-tab-example"
-                >
-                  <Tab eventKey="unanswered" title="Unanswered">
-                    <Question />
-                  </Tab>
-                  <Tab eventKey="answered" title="Answered"></Tab>
-                </Tabs>
-              </div>
-            </Col>
-          </Row>
-        </div>
-      </Container>
+      <div className="App">
+        <Row>
+          <Col>
+            <div className="App-header">
+              <img src={logo} className="App-logo" alt="logo" />
+              <h2>Welcome to Would You Rather Game</h2>
+            </div>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <div>
+              <Tabs
+                defaultActiveKey="home"
+                transition={false}
+                id="noanim-tab-example"
+              >
+                <Tab eventKey="unanswered" title="Unanswered">
+                  <Question />
+                </Tab>
+                <Tab eventKey="answered" title="Answered"></Tab>
+              </Tabs>
+            </div>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
