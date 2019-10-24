@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
+import LeaderboardItem from "../components/LeaderboardItem";
 
 class Leaderboard extends Component {
   render() {
@@ -12,6 +13,7 @@ class Leaderboard extends Component {
         <p className="App-intro">
           Show leaderboard for all 3 users: username, score, # of questions
           answered and created.
+          <LeaderboardItem />
         </p>
       </div>
     );
