@@ -1,7 +1,11 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-
-
+import React, { Component } from "react";
+import logo from "../logo.svg";
+import {
+  Button,
+  ButtonToolbar,
+  DropdownButton,
+  Dropdown
+} from "react-bootstrap";
 
 class Login extends Component {
   render() {
@@ -13,8 +17,21 @@ class Login extends Component {
         </div>
         <p className="App-intro">
           To get started, Login As:
-          DROPDOWN HERE..
-          <button onClick={this.props.onLogin}>Login</button>
+          <ButtonToolbar style={{ marginLeft: "40vw" }}>
+            {" "}
+            <DropdownButton
+              id="dropdown-basic-button"
+              title="Dropdown button"
+              style={{ marginRight: "5px" }}
+            >
+              <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+              <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
+              <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            </DropdownButton>
+            <Button variant="outline-primary" onClick={this.props.onLogin}>
+              Login
+            </Button>
+          </ButtonToolbar>
         </p>
       </div>
     );
