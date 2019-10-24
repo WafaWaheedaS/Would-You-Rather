@@ -24,6 +24,8 @@ class Login extends Component {
               title="Dropdown button"
               style={{ marginRight: "5px" }}
             >
+              {" "}
+              {/*select a user by default, so atleast one user is selected*/}
               <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
               <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
               <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>

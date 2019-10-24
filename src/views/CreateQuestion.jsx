@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import logo from '../logo.svg';
-
+import React, { Component } from "react";
+import logo from "../logo.svg";
+import { Card, Button, Form, Col } from "react-bootstrap";
 
 class CreateQuestion extends Component {
   render() {
@@ -11,7 +11,27 @@ class CreateQuestion extends Component {
           <h2>Ask a New Question</h2>
         </div>
         <p className="App-intro">
-         New question Form UI here
+          <Card body>
+            <Card>
+              <Card.Header as="h5">Create New Question</Card.Header>
+              <Card.Body>
+                <Card.Title>Would you rather ......</Card.Title>
+                <Form>
+                  <Form.Row>
+                    <Col>
+                      <Form.Control placeholder="First option" />
+                    </Col>
+                    <Col>
+                      <Form.Control placeholder="Second option" />
+                    </Col>
+                  </Form.Row>
+                </Form>
+                <Button variant="primary" style={{ marginTop: "10px" }}>
+                  Submit{" "}
+                </Button>
+              </Card.Body>
+            </Card>
+          </Card>
         </p>
       </div>
     );
