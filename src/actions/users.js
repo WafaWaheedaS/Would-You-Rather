@@ -16,9 +16,10 @@ export function getSelectedUser(user) {
   };
 }
 
-export function getAnswer(answer) {
+export function getAnswer(question, answer) {
   return {
     type: GET_ANSWER,
+    question,
     answer
   };
 }

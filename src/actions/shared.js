@@ -16,3 +16,11 @@ export function handleGetQuestions() {
     return WYRApi._getQuestions().then(e => dispatch(getQuestions(e)));
   };
 }
+
+export function submitAnswerToQuestions(authedUser, qid, answer) {
+  return dispatch => {
+    return WYRApi._saveQuestionAnswer({ authedUser, qid, answer }).then(e =>
+      dispatch(getQuestions(e))
+    );
+  };
+}

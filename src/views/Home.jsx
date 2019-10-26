@@ -14,7 +14,6 @@ class Home extends Component {
   }
   componentDidMount() {
     this.props.dispatch(handleGetQuestions());
-    this.props.dispatch(handleGetQuestions());
   }
   renderUnansweredQuestionsByUser() {
     let otherUsers = { ...this.props.users };

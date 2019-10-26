@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Card, Col } from "react-bootstrap";
+import { connect } from "react-redux";
+import { getAnswer } from "../actions/users";
+import { submitAnswerToQuestions } from "../actions/shared";
 
 class Question extends Component {
   constructor(props) {
@@ -18,6 +21,21 @@ class Question extends Component {
   submitAnswer(e) {
     e.preventDefault();
     console.log(this.state.selectedOption);
+    this.props.dispatch(
+      getAnswer(this.props.question.id, this.state.selectedOption)
+    );
+
+    setTimeout(
+      () =>
+        this.props.dispatch(
+          submitAnswerToQuestions(
+            this.props.selectedUser,
+            this.props.question.id,
+            this.state.selectedOption
+          )
+        ),
+      500
+    );
   }
   render() {
     console.log(this.props);
@@ -68,4 +86,10 @@ class Question extends Component {
   }
 }
 
-export default Question;
+function mapStateToProps(state) {
+  return {
+    selectedUser: state.users.selectedUser
+  };
+}
+
+export default connect(mapStateToProps)(Question);
