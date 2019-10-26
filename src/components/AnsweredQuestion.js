@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Card, Col } from "react-bootstrap";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 // import { getAnswer } from "../actions/users";
 // import { submitAnswerToQuestions } from "../actions/shared";
 
@@ -19,7 +20,10 @@ class AnsweredQuestion extends Component {
     });
   }
 
-  handleViewPollClick() {}
+  handleViewPollClick() {
+    this.props.question &&
+      this.props.history.push("/viewpoll/" + this.props.question.question);
+  }
   render() {
     return (
       <Col>
@@ -48,4 +52,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(AnsweredQuestion);
+export default withRouter(connect(mapStateToProps)(AnsweredQuestion));
