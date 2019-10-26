@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import logo from "../logo.svg";
 import { Card, Col } from "react-bootstrap";
 import { connect } from "react-redux";
 import { getAnswer } from "../actions/users";
@@ -51,48 +52,56 @@ class QuestionView extends Component {
 
     console.log(this.props.match.params, question);
     return (
-      <Col>
-        <Card>
-          <Card.Header>{question.author} asks:</Card.Header>
-          <Card.Body>
-            <Card.Title>Would you rather...</Card.Title>
-            <form onSubmit={this.submitAnswer}>
-              <div className="radio">
-                <label>
-                  <input
-                    type="radio"
-                    value="optionOne"
-                    checked={this.state.selectedOption === "optionOne"}
-                    onChange={this.handleOptionChange}
-                    style={{ marginRight: "5px" }}
-                  />
-                  {question.optionOne.text}
-                </label>
-              </div>
-              <div className="radio">
-                <label>
-                  <input
-                    type="radio"
-                    value="optionTwo"
-                    checked={this.state.selectedOption === "optionTwo"}
-                    onChange={this.handleOptionChange}
-                    style={{ marginRight: "5px" }}
-                  />
-                  {question.optionTwo.text}
-                </label>
-              </div>
+      <div className="App">
+        <div className="App-header">
+          <img src={logo} className="App-logo" alt="logo" />
+          <h2>Question</h2>
+        </div>
+        <div className="App-intro">
+          <Col>
+            <Card>
+              <Card.Header>{question.author} asks:</Card.Header>
+              <Card.Body>
+                <Card.Title>Would you rather...</Card.Title>
+                <form onSubmit={this.submitAnswer}>
+                  <div className="radio">
+                    <label>
+                      <input
+                        type="radio"
+                        value="optionOne"
+                        checked={this.state.selectedOption === "optionOne"}
+                        onChange={this.handleOptionChange}
+                        style={{ marginRight: "5px" }}
+                      />
+                      {question.optionOne.text}
+                    </label>
+                  </div>
+                  <div className="radio">
+                    <label>
+                      <input
+                        type="radio"
+                        value="optionTwo"
+                        checked={this.state.selectedOption === "optionTwo"}
+                        onChange={this.handleOptionChange}
+                        style={{ marginRight: "5px" }}
+                      />
+                      {question.optionTwo.text}
+                    </label>
+                  </div>
 
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={this.submitAnswer}
-              >
-                Submit
-              </button>
-            </form>
-          </Card.Body>
-        </Card>
-      </Col>
+                  <button
+                    className="btn btn-primary"
+                    type="submit"
+                    onClick={this.submitAnswer}
+                  >
+                    Submit
+                  </button>
+                </form>
+              </Card.Body>
+            </Card>
+          </Col>
+        </div>
+      </div>
     );
   }
 }
