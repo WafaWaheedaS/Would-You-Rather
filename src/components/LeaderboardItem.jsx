@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Col } from "react-bootstrap";
+import { Card, Col } from "react-bootstrap";
 
 class LeaderboardItem extends Component {
   constructor(props) {

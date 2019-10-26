@@ -14,11 +14,13 @@ class App extends Component {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+
+    this.handleUserChange = this.handleUserChange.bind(this);
   }
   state = {
     loggedIn: false,
     account: {
-      username: ""
+      username: "sarahedo"
     }
   };
 
@@ -28,6 +30,13 @@ class App extends Component {
 
   handleLogout() {
     this.setState({ loggedIn: false });
+  }
+  handleUserChange(selectedOption) {
+    console.log("dispatch event to select current user");
+    this.setState(prevState => ({
+      ...prevState,
+      account: { username: selectedOption.value }
+    }));
   }
 
   render() {
@@ -49,6 +58,7 @@ class App extends Component {
                 <Login
                   isLoggedIn={this.state.loggedIn}
                   onLogin={this.handleLogin}
+                  onUserChange={this.handleUserChange}
                 />
               )
             }
