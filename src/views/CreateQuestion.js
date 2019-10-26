@@ -5,6 +5,7 @@ import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 import { saveQuestion } from "../actions/shared";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 const createQuestionValidationSchema = Yup.object().shape({
   optionOne: Yup.string()
@@ -22,9 +23,9 @@ class CreateQuestion extends Component {
   }
   handleSubmit(values) {
     const selectedUser = this.props.selectedUser;
-    this.props.dispatch(
-      saveQuestion(values.optionOne, values.optionTwo, selectedUser)
-    );
+    this.props
+      .dispatch(saveQuestion(values.optionOne, values.optionTwo, selectedUser))
+      .then(() => this.props.history.push("/home"));
   }
 
   render() {
@@ -115,4 +116,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(CreateQuestion);
+export default withRouter(connect(mapStateToProps)(CreateQuestion));

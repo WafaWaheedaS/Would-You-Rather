@@ -102,12 +102,6 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(
-    "porps..",
-    state.users,
-    state.users[state.users.selectedUser],
-    state.users[state.users.selectedUser].answers
-  );
   return {
     users: state.users,
     selectedUser: state.users.selectedUser,
