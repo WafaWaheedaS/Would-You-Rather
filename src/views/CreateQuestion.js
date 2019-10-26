@@ -45,7 +45,7 @@ class CreateQuestion extends Component {
                 >
                   {({ status, errors }) => (
                     <Form>
-                      <div className="col-3" style={{ marginBottom: "10px" }}>
+                      <div className="col-12" style={{ marginBottom: "10px" }}>
                         <label htmlFor="optionOne" style={{ display: "block" }}>
                           Option One <sup>*</sup>
                         </label>
@@ -60,7 +60,7 @@ class CreateQuestion extends Component {
                           component="div"
                         />
                       </div>
-                      <div className="col-3" style={{ marginBottom: "10px" }}>
+                      <div className="col-12" style={{ marginBottom: "10px" }}>
                         <label htmlFor="optionTwo" style={{ display: "block" }}>
                           Option Two <sup>*</sup>
                         </label>
@@ -75,22 +75,27 @@ class CreateQuestion extends Component {
                           component="div"
                         />
                       </div>
+                      {Object.keys(errors).length === 0 ? (
+                        <Button
+                          variant="primary"
+                          style={{ marginTop: "10px" }}
+                          type="submit"
+                          onClick={this.handleSubmit}
+                        >
+                          Submit{" "}
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="primary"
+                          style={{ marginTop: "10px" }}
+                          disabled
+                        >
+                          Submit{" "}
+                        </Button>
+                      )}
                     </Form>
                   )}
                 </Formik>
-                {/* <Form>
-                  <Form.Row>
-                    <Col>
-                      <Form.Control placeholder="First option" />
-                    </Col>
-                    <Col>
-                      <Form.Control placeholder="Second option" />
-                    </Col>
-                  </Form.Row>
-                </Form> */}
-                <Button variant="primary" style={{ marginTop: "10px" }}>
-                  Submit{" "}
-                </Button>
               </Card.Body>
             </Card>
           </Card>
