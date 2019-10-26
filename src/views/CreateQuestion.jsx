@@ -10,7 +10,7 @@ class CreateQuestion extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Ask a New Question</h2>
         </div>
-        <p className="App-intro">
+        <div className="App-intro">
           <Card body>
             <Card>
               <Card.Header as="h5">Create New Question</Card.Header>
@@ -32,7 +32,7 @@ class CreateQuestion extends Component {
               </Card.Body>
             </Card>
           </Card>
-        </p>
+        </div>
       </div>
     );
   }
