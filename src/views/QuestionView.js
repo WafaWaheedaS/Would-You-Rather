@@ -22,7 +22,7 @@ class QuestionView extends Component {
   submitAnswer(e) {
     e.preventDefault();
     this.props.dispatch(
-      getAnswer(this.props.question.id, this.state.selectedOption)
+      getAnswer(this.props.match.params.id, this.state.selectedOption)
     );
 
     setTimeout(() => {
@@ -30,20 +30,23 @@ class QuestionView extends Component {
         .dispatch(
           submitAnswerToQuestions(
             this.props.selectedUser,
-            this.props.question.id,
+            this.props.match.params.id,
             this.state.selectedOption
           )
         )
         .then(() => {
-          this.props.history.push("/viewpoll/" + this.props.question.id);
+          this.props.history.push("/viewpoll/" + this.props.match.params);
         });
     }, 500);
   }
   render() {
+    const question = this.props.questions[this.props.match.params.id];
+
+    console.log(this.props.match.params, question);
     return (
       <Col>
         <Card>
-          <Card.Header>{this.props.question.author} asks:</Card.Header>
+          <Card.Header>{question.author} asks:</Card.Header>
           <Card.Body>
             <Card.Title>Would you rather...</Card.Title>
             <form onSubmit={this.submitAnswer}>
@@ -56,7 +59,7 @@ class QuestionView extends Component {
                     onChange={this.handleOptionChange}
                     style={{ marginRight: "5px" }}
                   />
-                  {this.props.question.optionOne.text}
+                  {question.optionOne.text}
                 </label>
               </div>
               <div className="radio">
@@ -68,7 +71,7 @@ class QuestionView extends Component {
                     onChange={this.handleOptionChange}
                     style={{ marginRight: "5px" }}
                   />
-                  {this.props.question.optionTwo.text}
+                  {question.optionTwo.text}
                 </label>
               </div>
 
@@ -89,7 +92,8 @@ class QuestionView extends Component {
 
 function mapStateToProps(state) {
   return {
-    selectedUser: state.users.selectedUser
+    selectedUser: state.users.selectedUser,
+    questions: state.questions
   };
 }
 
