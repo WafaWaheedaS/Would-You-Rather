@@ -11,11 +11,15 @@ class Login extends Component {
     super(props);
     this.handleUserChange = this.handleUserChange.bind(this);
   }
+  state = {
+    selectedUser: { value: "sarahedo", label: "Sarah Edo" }
+  };
   componentDidMount() {
     this.props.dispatch(handleGetUsers());
   }
   handleUserChange(selectedOption) {
     this.props.dispatch(getSelectedUser(selectedOption.value));
+    this.setState({ selectedUser: selectedOption });
   }
   render() {
     const userOptions = Object.keys(this.props.users).map(user => {
@@ -35,7 +39,7 @@ class Login extends Component {
           <Select
             className="col-6"
             options={userOptions}
-            value={userOptions[0]}
+            value={this.state.selectedUser}
             onChange={this.handleUserChange}
           />
           <Button variant="outline-primary" onClick={this.props.onLogin}>

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-
 import { Route, Switch, Redirect } from "react-router-dom";
 import Login from "./views/Login";
 import Home from "./views/Home";
@@ -8,20 +7,16 @@ import Leaderboard from "./views/Leaderboard";
 import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
 import Navbar from "./components/Navbar";
+import { connect } from "react-redux";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-
-    this.handleUserChange = this.handleUserChange.bind(this);
   }
   state = {
-    loggedIn: false,
-    account: {
-      username: "sarahedo"
-    }
+    loggedIn: false
   };
 
   handleLogin() {
@@ -31,20 +26,13 @@ class App extends Component {
   handleLogout() {
     this.setState({ loggedIn: false });
   }
-  handleUserChange(selectedOption) {
-    console.log("dispatch event to select current user");
-    this.setState(prevState => ({
-      ...prevState,
-      account: { username: selectedOption.value }
-    }));
-  }
 
   render() {
     return (
       <div className="container-fluid">
         <Navbar
           isLoggedIn={this.state.loggedIn}
-          username={this.state.account.username}
+          username={this.props.users && this.props.users.selectedUser}
           onLogoutClick={this.handleLogout}
         />
         <Switch>
@@ -92,4 +80,8 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return { users: state.users };
+}
+
+export default connect(mapStateToProps)(App);
