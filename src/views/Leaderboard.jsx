@@ -4,6 +4,10 @@ import LeaderboardItem from "../components/LeaderboardItem";
 import { connect } from "react-redux";
 
 class Leaderboard extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
     return (
       <div className="App">

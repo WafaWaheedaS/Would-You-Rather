@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Card, Col } from "react-bootstrap";
 import { connect } from "react-redux";
-import { getAnswer } from "../actions/users";
-import { submitAnswerToQuestions } from "../actions/shared";
+// import { getAnswer } from "../actions/users";
+// import { submitAnswerToQuestions } from "../actions/shared";
 
 class AnsweredQuestion extends Component {
   constructor(props) {
@@ -21,7 +21,6 @@ class AnsweredQuestion extends Component {
 
   handleViewPollClick() {}
   render() {
-    console.log(this.props);
     return (
       <Col>
         <Card>

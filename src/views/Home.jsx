@@ -20,17 +20,6 @@ class Home extends Component {
     let otherUsers = { ...this.props.users };
     delete otherUsers.selectedUser;
     delete otherUsers[this.props.selectedUser];
-
-    const unanswered = Object.keys(this.props.questions).filter(
-      q => !Object.keys(this.props.answers).includes(q)
-    );
-    const unansweredQuestions = unanswered.map(q => this.props.questions[q]);
-    // Object.keys(this.props.questions).filter(
-    //   question => unanswered.includes(question)
-    // );
-    const answeredQuestions = Object.keys(this.props.answers).map(
-      q => this.props.questions[q]
-    );
   }
   render() {
     if (!this.props.questions && !this.props.answers) {
@@ -41,15 +30,6 @@ class Home extends Component {
         q => !Object.keys(this.props.answers).includes(q)
       );
       const unansweredQuestions = unanswered.map(q => this.props.questions[q]);
-      // const answers = Object.keys(this.props.answers);
-      // const answeredQuestions = answers.map(q => this.props.questions[q]);
-      // const answeredQuestionsWithAnswer =
-      // answeredQuestions[0] &&
-      // answeredQuestions.map(aq =>
-      //   answers.map(a => {
-      //     a === aq.id && answeredQuestions[aq.id];
-      //   })
-      // );
       const selectedOptions = Object.keys(this.props.answers).map(a => {
         const x = this.props.questions[a];
         const y = this.props.answers[a];
