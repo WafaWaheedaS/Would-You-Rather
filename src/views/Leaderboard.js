@@ -19,12 +19,12 @@ class Leaderboard extends Component {
         <div className="App-intro">
           This is the leaderboard for all 3 users: username, score, # of
           questions answered and created.
-          <ul>
+          <div className="row">
             {this.props.usersScore &&
               this.props.usersScore.map((user, i) => (
                 <LeaderboardItem key={i} user={user} />
               ))}
-          </ul>
+          </div>
         </div>
       </div>
     );
