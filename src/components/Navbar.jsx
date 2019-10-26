@@ -25,7 +25,7 @@ class Navbar extends Component {
               <NavLink to="/home" className="nav-link">
                 Home
               </NavLink>
-              <NavLink to="/create-question" className="nav-link">
+              <NavLink to="/add" className="nav-link">
                 New Question
               </NavLink>
               <NavLink to="/leaderboard" className="nav-link">

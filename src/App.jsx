@@ -61,7 +61,7 @@ class App extends Component {
           />
           <Route
             exact
-            path="/create-question"
+            path="/add"
             render={() =>
               this.state.loggedIn ? <CreateQuestion /> : <Redirect to="/" />
             }
