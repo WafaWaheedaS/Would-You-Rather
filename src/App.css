@@ -26,3 +26,15 @@
     transform: rotate(360deg);
   }
 }
+
+/* form validation */
+
+.error {
+  color: #db2269;
+  font-weight: bold;
+  display: relative;
+}
+
+sup {
+  color: #f00;
+}

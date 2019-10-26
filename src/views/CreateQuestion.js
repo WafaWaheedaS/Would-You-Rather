@@ -1,8 +1,27 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import { Card, Button, Form, Col } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
+import { Formik, Field, ErrorMessage, Form } from "formik";
+import * as Yup from "yup";
+
+const createQuestionValidationSchema = Yup.object().shape({
+  optionOne: Yup.string()
+    .trim()
+    .required("Option One is required"),
+  optionTwo: Yup.string()
+    .trim()
+    .required("Option Two is required")
+});
 
 class CreateQuestion extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit(values, { setStatus }) {
+    // this.props.handleSubmit(values, setStatus);
+  }
+
   render() {
     return (
       <div className="App">
@@ -16,7 +35,50 @@ class CreateQuestion extends Component {
               <Card.Header as="h5">Create New Question</Card.Header>
               <Card.Body>
                 <Card.Title>Would you rather ......</Card.Title>
-                <Form>
+                <Formik
+                  initialValues={{
+                    optionOne: "",
+                    optionTwo: ""
+                  }}
+                  onSubmit={this.handleSubmit}
+                  validationSchema={createQuestionValidationSchema}
+                >
+                  {({ status, errors }) => (
+                    <Form>
+                      <div className="col-3" style={{ marginBottom: "10px" }}>
+                        <label htmlFor="optionOne" style={{ display: "block" }}>
+                          Option One <sup>*</sup>
+                        </label>
+                        <Field
+                          type="text"
+                          name="optionOne"
+                          className="form-control "
+                        />
+                        <ErrorMessage
+                          name="optionOne"
+                          className="error"
+                          component="div"
+                        />
+                      </div>
+                      <div className="col-3" style={{ marginBottom: "10px" }}>
+                        <label htmlFor="optionTwo" style={{ display: "block" }}>
+                          Option Two <sup>*</sup>
+                        </label>
+                        <Field
+                          type="text"
+                          name="optionTwo"
+                          className="form-control "
+                        />
+                        <ErrorMessage
+                          name="optionTwo"
+                          className="error"
+                          component="div"
+                        />
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+                {/* <Form>
                   <Form.Row>
                     <Col>
                       <Form.Control placeholder="First option" />
@@ -25,7 +87,7 @@ class CreateQuestion extends Component {
                       <Form.Control placeholder="Second option" />
                     </Col>
                   </Form.Row>
-                </Form>
+                </Form> */}
                 <Button variant="primary" style={{ marginTop: "10px" }}>
                   Submit{" "}
                 </Button>
