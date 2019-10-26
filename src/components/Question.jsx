@@ -20,7 +20,6 @@ class Question extends Component {
   }
   submitAnswer(e) {
     e.preventDefault();
-    console.log(this.state.selectedOption);
     this.props.dispatch(
       getAnswer(this.props.question.id, this.state.selectedOption)
     );
@@ -38,14 +37,13 @@ class Question extends Component {
     );
   }
   render() {
-    console.log(this.props);
     return (
       <Col>
         <Card>
           <Card.Header>{this.props.question.author} asks:</Card.Header>
           <Card.Body>
             <Card.Title>Would you rather...</Card.Title>
-            <form onSubmit={this.handleFormSubmit}>
+            <form onSubmit={this.submitAnswer}>
               <div className="radio">
                 <label>
                   <input
