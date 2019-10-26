@@ -5,7 +5,7 @@ import { getAnswer } from "../actions/users";
 import { submitAnswerToQuestions } from "../actions/shared";
 import { withRouter } from "react-router-dom";
 
-class Question extends Component {
+class QuestionView extends Component {
   constructor(props) {
     super(props);
     this.handleOptionChange = this.handleOptionChange.bind(this);
@@ -93,4 +93,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default withRouter(connect(mapStateToProps)(Question));
+export default withRouter(connect(mapStateToProps)(QuestionView));

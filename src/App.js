@@ -5,7 +5,7 @@ import Login from "./views/Login";
 import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
 import ViewPoll from "./views/ViewPoll";
-import Question from "./views/Question.js";
+import QuestionView from "./views/QuestionView.js";
 import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
 import Navbar from "./components/Navbar";
@@ -63,7 +63,7 @@ class App extends Component {
           <Route
             path="/question/:id"
             render={() =>
-              this.state.loggedIn ? <Question /> : <Redirect to="/" />
+              this.state.loggedIn ? <QuestionView /> : <Redirect to="/" />
             }
           />
 
