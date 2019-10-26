@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
 import { Row, Col, Tab, Tabs, Card } from "react-bootstrap";
-import Question from "../components/Question";
 import { connect } from "react-redux";
 import { handleGetQuestions } from "../actions/shared";
 import AnsweredQuestion from "../components/AnsweredQuestion";
