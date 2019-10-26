@@ -9,19 +9,12 @@ import { withRouter } from "react-router-dom";
 class Home extends Component {
   constructor(props) {
     super(props);
-    this.renderUnansweredQuestionsByUser = this.renderUnansweredQuestionsByUser.bind(
-      this
-    );
     this.handleViewQuestion = this.handleViewQuestion.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(handleGetQuestions());
   }
-  renderUnansweredQuestionsByUser() {
-    let otherUsers = { ...this.props.users };
-    delete otherUsers.selectedUser;
-    delete otherUsers[this.props.selectedUser];
-  }
+
   handleViewQuestion(id) {
     console.log(id);
     this.props.history.push("/question/" + id);
@@ -30,7 +23,6 @@ class Home extends Component {
     if (!this.props.questions && !this.props.answers) {
       return null;
     } else if (this.props.questions && this.props.answers) {
-      this.renderUnansweredQuestionsByUser();
       const unanswered = Object.keys(this.props.questions).filter(
         q => !Object.keys(this.props.answers).includes(q)
       );
@@ -110,6 +102,12 @@ class Home extends Component {
 }
 
 function mapStateToProps(state) {
+  console.log(
+    "porps..",
+    state.users,
+    state.users[state.users.selectedUser],
+    state.users[state.users.selectedUser].answers
+  );
   return {
     users: state.users,
     selectedUser: state.users.selectedUser,

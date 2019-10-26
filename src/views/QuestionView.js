@@ -29,11 +29,6 @@ class QuestionView extends Component {
       this.props.selectedUser,
       this.state.selectedOption
     );
-    // this.props
-    //   .dispatch(
-    //     getAnswer(this.props.match.params.id, this.state.selectedOption)
-    //   )
-    //   .then(() => {
     this.props
       .dispatch(
         submitAnswerToQuestions({
@@ -45,12 +40,9 @@ class QuestionView extends Component {
       .then(() => {
         this.props.history.push("/viewpoll/" + this.props.match.params.id);
       });
-    // });
   }
   render() {
     const question = this.props.questions[this.props.match.params.id];
-
-    console.log(this.props.match.params, question);
     return (
       <div className="App">
         <div className="App-header">

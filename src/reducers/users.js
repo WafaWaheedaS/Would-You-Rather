@@ -20,7 +20,10 @@ export default function users(state = {}, action) {
         ...state,
         [action.authUser]: {
           ...state[action.authUser],
-          answers: { [action.id]: action.answer }
+          answers: {
+            ...state[action.authUser].answers,
+            [action.id]: action.answer
+          }
         }
       };
     default:
