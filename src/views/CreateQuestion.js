@@ -3,6 +3,8 @@ import logo from "../logo.svg";
 import { Card, Button } from "react-bootstrap";
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
+import { saveQuestion } from "../actions/shared";
+import { connect } from "react-redux";
 
 const createQuestionValidationSchema = Yup.object().shape({
   optionOne: Yup.string()
@@ -18,8 +20,11 @@ class CreateQuestion extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(values, { setStatus }) {
-    // this.props.handleSubmit(values, setStatus);
+  handleSubmit(values) {
+    const selectedUser = this.props.selectedUser;
+    this.props.dispatch(
+      saveQuestion(values.optionOne, values.optionTwo, selectedUser)
+    );
   }
 
   render() {
@@ -43,7 +48,7 @@ class CreateQuestion extends Component {
                   onSubmit={this.handleSubmit}
                   validationSchema={createQuestionValidationSchema}
                 >
-                  {({ status, errors }) => (
+                  {({ errors }) => (
                     <Form>
                       <div className="col-12" style={{ marginBottom: "10px" }}>
                         <label htmlFor="optionOne" style={{ display: "block" }}>
@@ -80,7 +85,6 @@ class CreateQuestion extends Component {
                           variant="primary"
                           style={{ marginTop: "10px" }}
                           type="submit"
-                          onClick={this.handleSubmit}
                         >
                           Submit{" "}
                         </Button>
@@ -105,4 +109,10 @@ class CreateQuestion extends Component {
   }
 }
 
-export default CreateQuestion;
+function mapStateToProps(state) {
+  return {
+    selectedUser: state.users.selectedUser
+  };
+}
+
+export default connect(mapStateToProps)(CreateQuestion);
