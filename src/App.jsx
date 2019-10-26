@@ -4,6 +4,8 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Login from "./views/Login";
 import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
+import ViewPoll from "./views/ViewPoll";
+import Question from "./views/Question.js";
 import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
 import Navbar from "./components/Navbar";
@@ -53,26 +55,38 @@ class App extends Component {
             }
           />
           <Route
-            exact
             path="/home"
             render={() =>
               this.state.loggedIn ? <Home /> : <Redirect to="/" />
             }
           />
           <Route
-            exact
+            path="/question/:id"
+            render={() =>
+              this.state.loggedIn ? <Question /> : <Redirect to="/" />
+            }
+          />
+
+          <Route
             path="/add"
             render={() =>
               this.state.loggedIn ? <CreateQuestion /> : <Redirect to="/" />
             }
           />
           <Route
-            exact
+            exac
             path="/leaderboard"
             render={() =>
               this.state.loggedIn ? <Leaderboard /> : <Redirect to="/" />
             }
           />
+          <Route
+            path="/viewpoll/:id"
+            render={() =>
+              this.state.loggedIn ? <ViewPoll /> : <Redirect to="/" />
+            }
+          />
+
           <Route render={() => <Page404 isLoggedIn={this.state.loggedIn} />} />
         </Switch>
       </div>

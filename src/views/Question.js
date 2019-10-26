@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getAnswer } from "../actions/users";
 import { submitAnswerToQuestions } from "../actions/shared";
 import { withRouter } from "react-router-dom";
+
 class Question extends Component {
   constructor(props) {
     super(props);
@@ -33,9 +34,9 @@ class Question extends Component {
             this.state.selectedOption
           )
         )
-        .then(() =>
-          this.props.history.push("/viewpoll/" + this.props.question.id)
-        );
+        .then(() => {
+          this.props.history.push("/viewpoll/" + this.props.question.id);
+        });
     }, 500);
   }
   render() {

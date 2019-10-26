@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import logo from "../logo.svg";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class ViewPoll extends Component {
   state = {};
@@ -19,4 +21,4 @@ class ViewPoll extends Component {
   }
 }
 
-export default connect()(ViewPoll);
+export default withRouter(connect()(ViewPoll));

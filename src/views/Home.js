@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import logo from "../logo.svg";
-import { Row, Col, Tab, Tabs } from "react-bootstrap";
+import { Row, Col, Tab, Tabs, Card } from "react-bootstrap";
 import Question from "../components/Question";
 import { connect } from "react-redux";
 import { handleGetQuestions } from "../actions/shared";
 import AnsweredQuestion from "../components/AnsweredQuestion";
+import { withRouter } from "react-router-dom";
 
 class Home extends Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Home extends Component {
     this.renderUnansweredQuestionsByUser = this.renderUnansweredQuestionsByUser.bind(
       this
     );
+    this.handleViewQuestion = this.handleViewQuestion.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(handleGetQuestions());
@@ -20,6 +22,10 @@ class Home extends Component {
     let otherUsers = { ...this.props.users };
     delete otherUsers.selectedUser;
     delete otherUsers[this.props.selectedUser];
+  }
+  handleViewQuestion(id) {
+    console.log(id);
+    this.props.history.push("/question/" + id);
   }
   render() {
     if (!this.props.questions && !this.props.answers) {
@@ -63,7 +69,29 @@ class Home extends Component {
                   <Tab eventKey="unanswered" title="Unanswered">
                     {unansweredQuestions.length > 0 &&
                       unansweredQuestions.map((q, i) => (
-                        <Question key={i} question={q} />
+                        <Col key={i}>
+                          <Card>
+                            <Card.Header>{q.author} asks:</Card.Header>
+                            <Card.Body>
+                              <Card.Title>Would you rather...</Card.Title>
+                              <div>
+                                <label>{q.optionOne.text}</label>
+                              </div>
+                              <div>
+                                <label>{q.optionTwo.text}</label>
+                              </div>
+                              <div>
+                                <button
+                                  className="btn btn-primary"
+                                  type="submit"
+                                  onClick={() => this.handleViewQuestion(q.id)}
+                                >
+                                  View Question
+                                </button>
+                              </div>
+                            </Card.Body>
+                          </Card>
+                        </Col>
                       ))}
                   </Tab>
                   <Tab eventKey="answered" title="Answered">
@@ -91,4 +119,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Home);
+export default withRouter(connect(mapStateToProps)(Home));
