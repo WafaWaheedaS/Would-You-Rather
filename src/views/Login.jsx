@@ -9,12 +9,14 @@ import Select from "react-select";
 class Login extends Component {
   constructor(props) {
     super(props);
+    this.handleUserChange = this.handleUserChange.bind(this);
   }
-
   componentDidMount() {
     this.props.dispatch(handleGetUsers());
   }
-
+  handleUserChange(selectedOption) {
+    this.props.dispatch(getSelectedUser(selectedOption.value));
+  }
   render() {
     const userOptions = Object.keys(this.props.users).map(user => {
       let obj = {};
@@ -22,7 +24,6 @@ class Login extends Component {
       obj.label = this.props.users[user].name;
       return obj;
     });
-    console.log(userOptions);
     return (
       <div className="App">
         <div className="App-header">
@@ -35,7 +36,7 @@ class Login extends Component {
             className="col-6"
             options={userOptions}
             value={userOptions[0]}
-            onChange={this.props.onUserChange}
+            onChange={this.handleUserChange}
           />
           <Button variant="outline-primary" onClick={this.props.onLogin}>
             Login

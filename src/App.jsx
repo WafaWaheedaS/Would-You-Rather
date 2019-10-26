@@ -58,6 +58,7 @@ class App extends Component {
                 <Login
                   isLoggedIn={this.state.loggedIn}
                   onLogin={this.handleLogin}
+                  allUsers={this.userOptions}
                   onUserChange={this.handleUserChange}
                 />
               )
