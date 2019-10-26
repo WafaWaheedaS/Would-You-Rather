@@ -1,6 +1,7 @@
 export const GET_QUESTIONS = "GET_QUESTIONS";
 export const ADD_QUESTION = "ADD_QUESTION";
 export const ADD_QUESTION_TO_USER = "ADD_QUESTION_TO_USER";
+export const SAVE_ANSWER = "SAVE_ANSWER";
 
 export function getQuestions(questions) {
   return {
@@ -21,5 +22,14 @@ export function addQuestionIdToUser(questionId, user) {
     type: ADD_QUESTION_TO_USER,
     id: questionId,
     author: user
+  };
+}
+
+export function saveAnswerAction({ id, authUser, answer }) {
+  return {
+    type: SAVE_ANSWER,
+    id,
+    authUser,
+    answer
   };
 }

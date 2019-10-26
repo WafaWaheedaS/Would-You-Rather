@@ -1,9 +1,14 @@
 import * as WYRApi from "../assets/_DATA";
-import { getUsers, getSelectedUser } from "../actions/users";
+import {
+  getUsers,
+  getSelectedUser,
+  saveUserAnswerAction
+} from "../actions/users";
 import {
   getQuestions,
   addQuestion,
-  addQuestionIdToUser
+  addQuestionIdToUser,
+  saveAnswerAction
 } from "../actions/questions";
 
 export function handleGetUsers() {
@@ -21,11 +26,21 @@ export function handleGetQuestions() {
   };
 }
 
-export function submitAnswerToQuestions(authedUser, qid, answer) {
+export function submitAnswerToQuestions({ id, selectedUser, answer }) {
+  console.log(id, selectedUser, answer);
   return dispatch => {
-    return WYRApi._saveQuestionAnswer({ authedUser, qid, answer }).then(e =>
-      dispatch(getQuestions(e))
-    );
+    return WYRApi._saveQuestionAnswer({
+      authedUser: selectedUser,
+      qid: id,
+      answer: answer
+    }).then(() => {
+      dispatch(
+        saveAnswerAction({ id: id, authUser: selectedUser, answer: answer })
+      );
+      dispatch(
+        saveUserAnswerAction({ id: id, authUser: selectedUser, answer: answer })
+      );
+    });
   };
 }
 

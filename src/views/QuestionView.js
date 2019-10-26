@@ -12,7 +12,8 @@ class QuestionView extends Component {
     this.submitAnswer = this.submitAnswer.bind(this);
   }
   state = {
-    selectedOption: "optionOne"
+    selectedOption: "optionOne",
+    hasAnswered: false
   };
   handleOptionChange(current) {
     this.setState({
@@ -21,23 +22,29 @@ class QuestionView extends Component {
   }
   submitAnswer(e) {
     e.preventDefault();
-    this.props.dispatch(
-      getAnswer(this.props.match.params.id, this.state.selectedOption)
-    );
 
-    setTimeout(() => {
-      this.props
-        .dispatch(
-          submitAnswerToQuestions(
-            this.props.selectedUser,
-            this.props.match.params.id,
-            this.state.selectedOption
-          )
-        )
-        .then(() => {
-          this.props.history.push("/viewpoll/" + this.props.match.params);
-        });
-    }, 500);
+    console.log(
+      this.props.match.params.id,
+      this.props.selectedUser,
+      this.state.selectedOption
+    );
+    // this.props
+    //   .dispatch(
+    //     getAnswer(this.props.match.params.id, this.state.selectedOption)
+    //   )
+    //   .then(() => {
+    this.props
+      .dispatch(
+        submitAnswerToQuestions({
+          id: this.props.match.params.id,
+          selectedUser: this.props.selectedUser,
+          answer: this.state.selectedOption
+        })
+      )
+      .then(() => {
+        this.props.history.push("/viewpoll/" + this.props.match.params.id);
+      });
+    // });
   }
   render() {
     const question = this.props.questions[this.props.match.params.id];
