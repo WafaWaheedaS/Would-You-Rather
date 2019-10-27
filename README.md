@@ -1,5 +1,9 @@
 # Would-You-Rather
 
+Would You Rather is a fully responsive and mobile-ready polling game that presents the user with a series of questions.
+
+This project is built using React & Redux. And it uses Redux store is used to persist information as a user interacts with the application.
+
 Using React Redux
 
 STEPS TO RUN PROJECT:
