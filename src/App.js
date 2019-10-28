@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, Redirect, currentLocation } from "react-router-dom";
+import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Login from "./views/Login";
 import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
@@ -38,6 +38,20 @@ class App extends Component {
     this.setState({ loggedIn: false }, () => Cookies.remove("signin-status"));
   }
 
+  renderViews() {
+    return this.props.selectedUser === null ? (
+      <Route path="*" component={Login} />
+    ) : (
+      <Switch>
+        <Route path="/" exact component={Home} />
+        <Route path="/leaderboard" exact component={Leaderboard} />
+        <Route path="/questions/:id" component={QuestionView} />
+        <Route path="/add" exact component={CreateQuestion} />
+        <Route path="/*" component={Page404} />
+      </Switch>
+    );
+  }
+
   render() {
     return (
       <div className="container-fluid">
@@ -53,11 +67,10 @@ class App extends Component {
             render={() =>
               this.state.loggedIn ? (
                 <Redirect
-                  to="/home"
-                  // to={{
-                  //   pathname: "/login",
-                  //   state: { referrer: currentLocation }
-                  // }}
+                  to={{
+                    pathname: "/home",
+                    state: { from: location.pathname }
+                  }}
                 />
               ) : (
                 <Login
@@ -109,7 +122,7 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
-  return { users: state.users };
+  return { users: state.users, selectedUser: state.users.selectedUser };
 }
 
-export default connect(mapStateToProps)(App);
+export default withRouter(connect(mapStateToProps)(App));
