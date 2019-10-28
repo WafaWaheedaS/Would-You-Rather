@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect, currentLocation } from "react-router-dom";
 import Login from "./views/Login";
 import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
@@ -52,7 +52,12 @@ class App extends Component {
             path="/"
             render={() =>
               this.state.loggedIn ? (
-                <Redirect to="/home" />
+                <Redirect
+                  to={{
+                    pathname: "/login",
+                    state: { referrer: currentLocation }
+                  }}
+                />
               ) : (
                 <Login
                   isLoggedIn={this.state.loggedIn}
