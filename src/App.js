@@ -4,7 +4,6 @@ import { Route, Switch, Redirect, withRouter } from "react-router-dom";
 import Login from "./views/Login";
 import Home from "./views/Home";
 import Leaderboard from "./views/Leaderboard";
-import ViewPoll from "./views/ViewPoll";
 import QuestionView from "./views/QuestionView.js";
 import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
@@ -105,12 +104,6 @@ class App extends Component {
             path="/leaderboard"
             render={() =>
               this.state.loggedIn ? <Leaderboard /> : <Redirect to="/" />
-            }
-          />
-          <Route
-            path="/viewpoll/:id"
-            render={() =>
-              this.state.loggedIn ? <ViewPoll /> : <Redirect to="/" />
             }
           />
 
