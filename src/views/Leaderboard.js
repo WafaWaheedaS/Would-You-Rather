@@ -9,7 +9,7 @@ class Leaderboard extends Component {
     this.state = {};
   }
   render() {
-    console.log(this.props.usersScore);
+    console.log(this.props);
     return (
       <div className="App">
         <div className="App-header">

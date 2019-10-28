@@ -7,11 +7,12 @@ class LeaderboardItem extends Component {
     this.state = {};
   }
   render() {
-    console.log(this.props.user);
+    console.log(this.props);
     return (
       <Card border="primary" style={{ marginRight: "5px" }}>
         <Card.Header>{this.props.user && this.props.user.name}</Card.Header>
         <Card.Body>
+          <img src={this.props.user.avatarURL} />
           <Card.Title>
             {" "}
             Score :{" "}
@@ -20,11 +21,11 @@ class LeaderboardItem extends Component {
                 Object.keys(this.props.user.answers).length}
           </Card.Title>
           <div>
-            Answered Questions :{" "}
+            No of Questions Answered:{" "}
             {this.props.user && Object.keys(this.props.user.answers).length}{" "}
           </div>
           <div>
-            Created Questions :{" "}
+            No of Questions Asked :{" "}
             {this.props.user && this.props.user.questions.length}
           </div>
         </Card.Body>
