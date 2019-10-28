@@ -10,6 +10,7 @@ import CreateQuestion from "./views/CreateQuestion";
 import Page404 from "./views/Page404";
 import Navbar from "./components/Navbar";
 import { connect } from "react-redux";
+import Cookies from "js-cookie";
 
 class App extends Component {
   constructor(props) {
@@ -21,12 +22,20 @@ class App extends Component {
     loggedIn: false
   };
 
+  // componentDidMount() {
+  //   if (Cookies.get("signin-status")) {
+  //     this.setState({ loggedIn: true });
+  //   }
+  // }
   handleLogin() {
-    this.setState({ loggedIn: true });
+    const inHalfADay = 0.5;
+    this.setState({ loggedIn: true }, () =>
+      Cookies.set("signin-status", true, { expires: inHalfADay })
+    );
   }
 
   handleLogout() {
-    this.setState({ loggedIn: false });
+    this.setState({ loggedIn: false }, () => Cookies.remove("signin-status"));
   }
 
   render() {
@@ -74,7 +83,6 @@ class App extends Component {
             }
           />
           <Route
-            exac
             path="/leaderboard"
             render={() =>
               this.state.loggedIn ? <Leaderboard /> : <Redirect to="/" />

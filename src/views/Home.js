@@ -26,7 +26,12 @@ class Home extends Component {
       const unanswered = Object.keys(this.props.questions).filter(
         q => !Object.keys(this.props.answers).includes(q)
       );
-      const unansweredQuestions = unanswered.map(q => this.props.questions[q]);
+      const unansweredQuestions = unanswered
+        .map(key => ({
+          ...this.props.questions[key]
+        }))
+        .sort((a, b) => b.timestamp - a.timestamp); //.map(q => this.props.questions[q]);
+
       const selectedOptions = Object.keys(this.props.answers).map(a => {
         const x = this.props.questions[a];
         const y = this.props.answers[a];
