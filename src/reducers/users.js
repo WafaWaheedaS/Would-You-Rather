@@ -30,9 +30,12 @@ export default function users(state = {}, action) {
     case ADD_QUESTION:
       return {
         ...state,
-        [action.authUser]: {
-          ...state[action.authUser],
-          questions: [...state[action.authUser].questions, action.question.id]
+        [action.question.author]: {
+          ...state[action.question.author],
+          questions: [
+            ...state[action.question.author].questions,
+            action.question.id
+          ]
         }
       };
     default:

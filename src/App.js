@@ -53,10 +53,11 @@ class App extends Component {
             render={() =>
               this.state.loggedIn ? (
                 <Redirect
-                  to={{
-                    pathname: "/login",
-                    state: { referrer: currentLocation }
-                  }}
+                  to="/home"
+                  // to={{
+                  //   pathname: "/login",
+                  //   state: { referrer: currentLocation }
+                  // }}
                 />
               ) : (
                 <Login
