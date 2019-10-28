@@ -23,9 +23,10 @@ class CreateQuestion extends Component {
   }
   handleSubmit(values) {
     const selectedUser = this.props.selectedUser;
-    this.props
-      .dispatch(saveQuestion(values.optionOne, values.optionTwo, selectedUser))
-      .then(() => this.props.history.push("/home"));
+    this.props.dispatch(
+      saveQuestion(values.optionOne, values.optionTwo, selectedUser)
+    );
+    this.props.history.push("/home");
   }
 
   render() {
