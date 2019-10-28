@@ -32,18 +32,21 @@ class Home extends Component {
         }))
         .sort((a, b) => b.timestamp - a.timestamp); //.map(q => this.props.questions[q]);
 
-      const selectedOptions = Object.keys(this.props.answers).map(a => {
-        const x = this.props.questions[a];
-        const y = this.props.answers[a];
-        const author = x && x.author;
-        const answer = x && y && x[y].text;
-        const obj = {
-          question: a,
-          answer: answer,
-          author: author
-        };
-        return obj;
-      });
+      const selectedOptions = Object.keys(this.props.answers)
+        .map(a => {
+          const x = this.props.questions[a];
+          const y = this.props.answers[a];
+          const author = x && x.author;
+          const answer = x && y && x[y].text;
+          const obj = {
+            ...this.props.questions[a],
+            question: a,
+            answer: answer,
+            author: author
+          };
+          return obj;
+        })
+        .sort((a, b) => b.timestamp - a.timestamp);
       return (
         <div className="App">
           <Row>

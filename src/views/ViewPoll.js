@@ -11,7 +11,12 @@ class ViewPoll extends Component {
   }
   render() {
     const question = this.props.questions[this.props.match.params.id];
+    const oneVotes = question.optionOne.votes.length;
+    const twoVotes = question.optionTwo.votes.length;
 
+    const total = oneVotes + twoVotes;
+    const onePercentage = Math.floor((oneVotes / total) * 100);
+    const twoPercentage = Math.floor((twoVotes / total) * 100);
     return (
       <div className="App">
         <div className="App-header">
@@ -30,14 +35,14 @@ class ViewPoll extends Component {
                     <label>
                       {question.optionOne.text}
                       {" --> "}
-                      {(question.optionOne.votes.length / 3) * 100}
+                      {onePercentage}
                     </label>
                   </div>
                   <div>
                     <label>
                       {question.optionTwo.text}
                       {" -->"}
-                      {(question.optionTwo.votes.length / 3) * 100}
+                      {twoPercentage}
                     </label>
                   </div>
                 </form>
