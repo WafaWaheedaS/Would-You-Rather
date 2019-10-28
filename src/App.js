@@ -70,7 +70,7 @@ class App extends Component {
             }
           />
           <Route
-            path="/question/:id"
+            path="/questions/:id"
             render={() =>
               this.state.loggedIn ? <QuestionView /> : <Redirect to="/" />
             }

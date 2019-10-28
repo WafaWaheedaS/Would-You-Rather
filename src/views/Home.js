@@ -17,7 +17,7 @@ class Home extends Component {
 
   handleViewQuestion(id) {
     console.log(id);
-    this.props.history.push("/question/" + id);
+    this.props.history.push("/questions/" + id);
   }
   render() {
     if (!this.props.questions && !this.props.answers) {
