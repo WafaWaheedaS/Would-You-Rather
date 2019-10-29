@@ -130,6 +130,7 @@ class QuestionView extends Component {
               <Card>
                 <Card.Header>{question.author} asks:</Card.Header>
                 <Card.Body>
+                  <img src={this.props.users[question.author].avatarURL} />
                   <Card.Title>Would you rather...</Card.Title>
                   <form onSubmit={this.submitAnswer}>
                     <div>
