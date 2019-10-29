@@ -22,7 +22,7 @@ class AnsweredQuestion extends Component {
 
   handleViewPollClick() {
     this.props.question &&
-      this.props.history.push("/viewpoll/" + this.props.question.question);
+      this.props.history.push("/questions/" + this.props.question.question);
   }
   render() {
     return (

@@ -16,6 +16,17 @@ class QuestionView extends Component {
     selectedOption: "optionOne",
     hasAnswered: false
   };
+  componentDidMount() {
+    if (
+      this.props.users[this.props.selectedUser].answers[
+        this.props.match.params.id
+      ]
+    ) {
+      this.setState({
+        hasAnswered: true
+      });
+    }
+  }
   handleOptionChange(current) {
     this.setState({
       selectedOption: current.target.value
@@ -123,16 +134,18 @@ class QuestionView extends Component {
                   <form onSubmit={this.submitAnswer}>
                     <div>
                       <label>
-                        {question.optionOne.text}
+                        {question.optionOne.text}, answered by {oneVotes}{" "}
+                        user(s),
                         {" --> "}
-                        {onePercentage}
+                        {onePercentage} %
                       </label>
                     </div>
                     <div>
                       <label>
-                        {question.optionTwo.text}
+                        {question.optionTwo.text}, answered by {twoVotes}{" "}
+                        users(s),
                         {" -->"}
-                        {twoPercentage}
+                        {twoPercentage} %
                       </label>
                     </div>
                   </form>
